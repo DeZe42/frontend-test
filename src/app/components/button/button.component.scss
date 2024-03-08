@@ -1,0 +1,22 @@
+button {
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+
+  &.primary {
+    color: #FFF;
+    border: none;
+    outline: 4px solid #C8C0F8;
+    background-color: #5C48D1;
+  }
+
+  &.secondary {
+    color: #142952;
+    border: 1px solid #142952;
+    background-color: #FFF;
+  }
+}

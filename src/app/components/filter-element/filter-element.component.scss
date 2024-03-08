@@ -1,0 +1,26 @@
+.author-container {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+
+  &__profile-img {
+    margin-right: 8px;
+  }
+
+  &__name {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+  }
+
+  input[type="checkbox"] {
+    margin-left: auto;
+    accent-color: #5C48D1;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: #8C8C9A;
+    cursor: pointer;
+  }
+}

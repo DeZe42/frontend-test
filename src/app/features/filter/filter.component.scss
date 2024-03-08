@@ -1,0 +1,19 @@
+.icon-button {
+  background-color: unset;
+  border: unset;
+  margin-right: 16px;
+  cursor: pointer;
+
+  i {
+    width: 16px;
+    height: 12px;
+  }
+}
+
+.selected {
+  font-size: 18px;
+  line-height: 22.5px;
+  font-weight: 400;
+  color: #5C48D1;
+  margin-left: auto;
+}

@@ -1,0 +1,14 @@
+<div class="author-container">
+  <img
+    class="author-container__profile-img"
+    [width]="32"
+    [height]="32"
+    [alt]="filterElement.imgAlt"
+    [ngSrc]="filterElement.imgSrc" />
+  <span class="author-container__name">{{ filterElement.name }}</span>
+  <input
+    type="checkbox"
+    [value]="filterElement"
+    [checked]="filterElement.selected"
+    (change)="filterElement.selected = !filterElement.selected">
+</div>

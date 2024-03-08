@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lexend:wght@100..900&display=swap');
+
+* {
+  font-family: Lexend, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+%icon {
+  display: inline-block;
+  min-width: 5px;
+  min-height: 5px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@mixin icon($name) {
+  @extend %icon;
+  background-image: url('/assets/' + $name);
+}
+
+*[class*='icon-'] {
+  &.icon-left-arrow {
+    @include icon('icons/left_arrow_icon.svg');
+  }
+
+  &.icon-right-arrow {
+    @include icon('icons/right_arrow_icon.svg');
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 16px;
+  height: calc(100vh - 64px);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+
+    h1 {
+      font-size: 22px;
+      line-height: 28px;
+      font-weight: 700;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    margin: 28px 0;
+    gap: 16px;
+    overflow-y: auto;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: auto;
+  }
+}
