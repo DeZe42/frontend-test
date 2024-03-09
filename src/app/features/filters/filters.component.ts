@@ -3,7 +3,7 @@ import {CommonModule} from "@angular/common";
 import {FiltersService} from "../../services/filters.service";
 import {RouterLink} from "@angular/router";
 import {ButtonComponent} from "../../components/button/button.component";
-import {Filter, Filters} from "../../utils/filters.interface";
+import {Filters, FilterType} from "../../utils/filters.interface";
 
 @Component({
   selector: 'app-filters',
@@ -20,16 +20,16 @@ export class FiltersComponent {
   constructor(private _filtersService: FiltersService, private _cdr: ChangeDetectorRef) {
     effect(() => {
       this.filters = [
-        { name: 'Nyelv', type: 'languages', data: this._filtersService.languages() },
-        { name: 'Szerző', type: 'authors', data: this._filtersService.authors() },
-        { name: 'Státusz', type: 'statuses', data: this._filtersService.statuses() },
+        { name: 'Nyelv', filterType: 'languages', data: this._filtersService.languages() },
+        { name: 'Szerző', filterType: 'authors', data: this._filtersService.authors() },
+        { name: 'Státusz', filterType: 'statuses', data: this._filtersService.statuses() },
       ]
       this._cdr.detectChanges()
     })
   }
 
-  getSelectedFilter(filterType: string) {
-    return this.filters.filter(filter => filter.type === filterType)[0].data.filter(filterElement => filterElement.selected)
+  getSelectedFilter(filterType: FilterType) {
+    return this.filters.filter(filter => filter.filterType === filterType)[0].data.filter(filterElement => filterElement.selected)
   }
 
   deleteFilters() {

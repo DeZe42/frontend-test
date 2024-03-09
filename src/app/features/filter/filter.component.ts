@@ -1,10 +1,10 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, effect} from "@angular/core";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, OnInit} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FilterElementComponent} from "../../components/filter-element/filter-element.component";
 import {ButtonComponent} from "../../components/button/button.component";
 import {Router, RouterLink} from "@angular/router";
 import {FiltersService} from "../../services/filters.service";
-import {Filter} from "../../utils/filters.interface";
+import {Filter, FilterType} from "../../utils/filters.interface";
 
 @Component({
   selector: 'app-filter',
@@ -14,15 +14,16 @@ import {Filter} from "../../utils/filters.interface";
   styleUrl: './filter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterComponent {
+export class FilterComponent implements OnInit {
   filters: Filter[] = []
+  previousFilters: Filter[] = []
   filterName: string
+  filterType: FilterType
 
   constructor(private _router: Router, private _filtersService: FiltersService, private _cdr: ChangeDetectorRef) {
     effect(() => {
       switch (this._router.url) {
         case '/languages':
-          console.log('asd')
           this.filterName = 'Nyelv'
           this.filters = this._filtersService.languages()
           break
@@ -35,33 +36,34 @@ export class FilterComponent {
           this.filters = this._filtersService.statuses()
           break
       }
+      this.previousFilters = JSON.parse(JSON.stringify(this.filters))
       this._cdr.detectChanges()
     })
+  }
+
+  ngOnInit() {
+    this.filterType = this._router.url.replace('/', '') as FilterType
   }
 
   get selectedFilters() {
     return this.filters.filter(filter => filter.selected).length
   }
 
-  navigateToFilter() {
-    this._router.navigate([''])
+  private _navigateToFilters() {
+    this._router.navigateByUrl('/')
   }
 
   save() {
-    switch (this._router.url) {
-      case 'language':
-        this.filterName = 'Nyelv'
-        this._filtersService.addLanguages(this.filters)
-        break
-      case 'author':
-        this.filterName = 'Szerző'
-        this._filtersService.addAuthors(this.filters)
-        break
-      case 'status':
-        this.filterName = 'Státusz'
-        this._filtersService.addStatuses(this.filters)
-        break
+    this._filtersService.addData(this.filterType, this.filters)
+    this._navigateToFilters()
+  }
+
+  cancel() {
+    if (!this.selectedFilters && JSON.stringify(this.previousFilters) === JSON.stringify(this.filters)) {
+      this._filtersService.removeFilter(this.filterType)
+    } else {
+      this._filtersService.addData(this.filterType, this.previousFilters)
     }
-    this.navigateToFilter()
+    this._navigateToFilters()
   }
 }

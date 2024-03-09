@@ -1,25 +1,23 @@
-<div class="container">
-  <div class="container__header">
-    <h1>Szűrés</h1>
-    <a (click)="deleteFilters()">Összes szűrő törlése</a>
-  </div>
-  <div class="container__body">
-    @for (filter of filters; track filter) {
-      <div
-        class="line-container"
-        [routerLink]="filter.type">
-        <span class="line-container__filter-name">{{ filter.name }}</span>
-        <span class="line-container__object-name">
-        @for (selectedFilterElement of getSelectedFilter(filter.type); track selectedFilterElement;let last = $last) {
-          {{ selectedFilterElement.name }} @if (!last) {,}
-        }
-      </span>
-        <i class="icon-right-arrow"></i>
-      </div>
-    }
-  </div>
-<!--  <div class="container__footer">-->
-<!--    <app-button buttonType="primary" buttonName="Mentés"></app-button>-->
-<!--    <app-button buttonType="secondary" buttonName="Mégsem"></app-button>-->
-<!--  </div>-->
+<div class="header">
+  <h1>Szűrés</h1>
+  <button (click)="deleteFilters()">Összes szűrő törlése</button>
+</div>
+<div class="body">
+  @for (filter of filters; track filter) {
+    <div
+      class="line-container"
+      [routerLink]="filter.filterType">
+      <span class="line-container__filter-name">{{ filter.name }}</span>
+      <span class="line-container__object-name">
+      @for (selectedFilterElement of getSelectedFilter(filter.filterType); track selectedFilterElement;let last = $last) {
+        {{ selectedFilterElement.name }} @if (!last) {,}
+      }
+    </span>
+      <i class="icon-right-arrow"></i>
+    </div>
+  }
+</div>
+<div class="footer">
+  <app-button buttonType="primary" buttonName="Mentés"></app-button>
+  <app-button buttonType="secondary" buttonName="Mégsem"></app-button>
 </div>

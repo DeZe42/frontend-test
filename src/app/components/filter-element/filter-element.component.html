@@ -1,10 +1,11 @@
 <div class="author-container">
-  <img
-    class="author-container__profile-img"
-    [width]="32"
-    [height]="32"
-    [alt]="filterElement.imgAlt"
-    [ngSrc]="filterElement.imgSrc" />
+  <div class="author-container__img-wrapper">
+    <img
+      width="32"
+      height="32"
+      [alt]="filterElement.imgAlt"
+      [src]="filterElement.imgSrc" />
+  </div>
   <span class="author-container__name">{{ filterElement.name }}</span>
   <input
     type="checkbox"

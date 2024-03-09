@@ -8,6 +8,8 @@ export interface Filter {
 
 export interface Filters {
   name: string
-  type: 'languages' | 'authors' | 'statuses'
+  filterType: FilterType
   data: Filter[]
 }
+
+export type FilterType = 'languages' | 'authors' | 'statuses'

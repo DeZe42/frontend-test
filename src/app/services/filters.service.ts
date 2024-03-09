@@ -1,5 +1,5 @@
 import {computed, Injectable, signal} from "@angular/core";
-import {Filter} from "../utils/filters.interface";
+import {Filter, FilterType} from "../utils/filters.interface";
 
 @Injectable({
   providedIn: 'root',
@@ -15,16 +15,18 @@ export class FiltersService {
   constructor() {
   }
 
-  addLanguages(selectedLanguages: Filter[]) {
-    this.#authors.update(() => selectedLanguages)
-  }
-
-  addAuthors(selectedAuthors: Filter[]) {
-    this.#authors.update(() => selectedAuthors)
-  }
-
-  addStatuses(selectedStatuses: Filter[]) {
-    this.#authors.update(() => selectedStatuses)
+  addData(filterType: FilterType, filterData: Filter[]) {
+    switch (filterType) {
+      case 'languages':
+        this.#languages.update(() => filterData)
+        break
+      case 'authors':
+        this.#authors.update(() => filterData)
+        break
+      case 'statuses':
+        this.#statuses.update(() => filterData)
+        break
+    }
   }
 
   removeFilters() {
@@ -32,11 +34,25 @@ export class FiltersService {
     this.#authors.update(() => JSON.parse(JSON.stringify(authors)))
     this.#statuses.update(() => JSON.parse(JSON.stringify(statuses)))
   }
+
+  removeFilter(filterName: string) {
+    switch (filterName) {
+      case 'languages':
+        this.#languages.update(() => JSON.parse(JSON.stringify(languages)))
+        break
+      case 'authors':
+        this.#authors.update(() => JSON.parse(JSON.stringify(authors)))
+        break
+      case 'statuses':
+        this.#statuses.update(() => JSON.parse(JSON.stringify(statuses)))
+        break
+    }
+  }
 }
 
 export const languages = [
-  { id: 0, imgAlt: 'flag_img', imgSrc: '/assets/images/img_5.png', name: 'Magyar', selected: false },
-  { id: 1, imgAlt: 'flag_img', imgSrc: '/assets/images/img_2.png', name: 'Angol', selected: false }
+  { id: 0, imgAlt: 'flag_img', imgSrc: '/assets/images/hungarian.jpg', name: 'Magyar', selected: false },
+  { id: 1, imgAlt: 'flag_img', imgSrc: '/assets/images/english.svg', name: 'Angol', selected: false }
 ]
 
 export const authors = [

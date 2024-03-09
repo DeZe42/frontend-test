@@ -32,36 +32,32 @@ body {
   }
 }
 
-.container {
+
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+
+  h1 {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 700;
+  }
+}
+
+.body {
   display: flex;
   flex-direction: column;
-  padding: 32px 16px;
-  height: calc(100vh - 64px);
+  margin: 28px 0;
+  gap: 16px;
+  overflow-y: auto;
+  height: calc(100vh - 330px);
+}
 
-  &__header {
-    display: flex;
-    align-items: center;
-    padding: 0 8px;
-
-    h1 {
-      font-size: 22px;
-      line-height: 28px;
-      font-weight: 700;
-    }
-  }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-    margin: 28px 0;
-    gap: 16px;
-    overflow-y: auto;
-  }
-
-  &__footer {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: auto;
-  }
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
 }

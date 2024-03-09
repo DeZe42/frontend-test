@@ -1,18 +1,16 @@
-<div class="container">
-  <div class="container__header">
-    <button class="icon-button" (click)="navigateToFilter()">
-      <i class="icon-left-arrow"></i>
-    </button>
-    <h1>{{ filterName }}</h1>
-    <span class="selected">{{ selectedFilters }} kiválasztva</span>
-  </div>
-  <div class="container__body">
-    @for (filter of filters; track filter) {
-      <app-filter-element [filterElement]="filter"></app-filter-element>
-    }
-  </div>
-  <div class="container__footer">
-    <app-button buttonType="primary" buttonName="Mentés" (clickEvent)="save()"></app-button>
-    <app-button buttonType="secondary" buttonName="Mégsem" (clickEvent)="navigateToFilter()"></app-button>
-  </div>
+<div class="header">
+  <button class="icon-button" (click)="cancel()">
+    <i class="icon-left-arrow"></i>
+  </button>
+  <h1>{{ filterName }}</h1>
+  <span class="selected">{{ selectedFilters }} kiválasztva</span>
+</div>
+<div class="body">
+  @for (filter of filters; track filter) {
+    <app-filter-element [filterElement]="filter"></app-filter-element>
+  }
+</div>
+<div class="footer">
+  <app-button buttonType="primary" buttonName="Mentés" (clickEvent)="save()"></app-button>
+  <app-button buttonType="secondary" buttonName="Mégsem" (clickEvent)="cancel()"></app-button>
 </div>

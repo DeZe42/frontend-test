@@ -1,4 +1,4 @@
-a {
+button {
   color: #5C48D1;
   font-size: 18px;
   font-weight: 400;
@@ -6,6 +6,8 @@ a {
   text-decoration: underline;
   margin-left: auto;
   cursor: pointer;
+  background-color: unset;
+  border: none;
 }
 
 .line-container {
